@@ -48,21 +48,20 @@ export default class App extends Component {
 
   getVisibleContacts = () => {
     const { contacts, filter } = this.state;
-    console.log(filter);
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(filter.toLowerCase())
     );
   };
 
   render() {
-    const { filter } = this.state;
+    const { filter, contacts } = this.state;
     const visibleContacts = this.getVisibleContacts();
 
     return (
       <Layout>
         <h2>Phonebook</h2>
         <ContactForm onAddContact={this.addContact} />
-        {visibleContacts.length > 1 && (
+        {contacts.length > 1 && (
           <Filter value={filter} onChangeFilter={this.changeFilter} />
         )}
         {visibleContacts.length > 0 && (
